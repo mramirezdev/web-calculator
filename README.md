@@ -7,3 +7,5 @@ The calculator offers the most common operations such as addition, subtraction, 
 ![Picture](https://github.com/mramirezdev/web-calculator/blob/main/Site/calculator-interface-picture.jpg)
 
 # Setting Up
+
+>ok
