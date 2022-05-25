@@ -12,6 +12,10 @@ To execute the statements defined in the Dockerfile, install docker-compose. If 
 
 ## Installing Docker Compose
 
+### Windows & macOS
+
+Docker Compose is included in [https://www.docker.com/products/docker-desktop/](Docker Desktop) for Windows and macOS.
+
 ### Linux
 
 Download the 1.29.2 release and save the executable file at /usr/local/bin/, this will allow docker-compose to be accessed globally.
