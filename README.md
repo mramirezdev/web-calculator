@@ -14,5 +14,4 @@ Download the *1.29.2* release and save the executable file at /usr/local/bin/doc
 
 ```
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-
 ```
