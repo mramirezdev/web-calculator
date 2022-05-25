@@ -12,7 +12,7 @@ To execute the statements defined in the Dockerfile, install docker-compose. If 
 
 ## Installing Docker Compose
 
-Download the **1.29.2** release and save the executable file at /usr/local/bin/docker-compose, this will allow docker-compose to be accessed globally.
+Download the **1.29.2** release and save the executable file at /usr/local/bin/, this will allow docker-compose to be accessed globally.
 ```
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
@@ -23,3 +23,11 @@ To verify successful installation, run:
 ```docker-compose --version```
 
 # Quick Start
+
+Make sure you are in the path where the Dockerfile and docker-compose.yml files are located.
+
+Run docker compose to build the image and start the container.
+```
+sudo docker-compose build
+sudo docker compose up
+```
