@@ -14,7 +14,7 @@ To execute the statements defined in the Dockerfile, install docker-compose. If 
 
 ### Windows & macOS
 
-Docker Compose is included in [https://www.docker.com/products/docker-desktop/](Docker Desktop) for Windows and macOS.
+Docker Compose is included in [Docker Desktop](https://www.docker.com/products/docker-desktop/) for Windows and macOS.
 
 ### Linux
 
