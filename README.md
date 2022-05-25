@@ -16,11 +16,7 @@ Download the **1.29.2** release and save the executable file at /usr/local/bin/d
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
 Set execute permission to docker-compose.
+```sudo chmod +x /usr/local/bin/docker-compose```
 
-```
-sudo chmod +x /usr/local/bin/docker-compose
-```
 To verify successful installation, run:
-```
-docker-compose --version
-```
+```docker-compose --version```
