@@ -10,7 +10,7 @@ The calculator offers the most common operations such as addition, subtraction, 
 
 To execute the statements defined in the Dockerfile, install docker-compose. If you already have it installed, go to the next step.
 
-## Installing Docker-Compose
+## Installing Docker Compose
 
 Download the **1.29.2** release and save the executable file at /usr/local/bin/docker-compose, this will allow docker-compose to be accessed globally.
 ```
@@ -21,3 +21,5 @@ Set execute permission to docker-compose
 
 To verify successful installation, run:
 ```docker-compose --version```
+
+# Quick Start
