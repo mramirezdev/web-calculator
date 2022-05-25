@@ -12,12 +12,15 @@ To execute the statements defined in the Dockerfile, install docker-compose. If 
 
 Download the **1.29.2** release and save the executable file at /usr/local/bin/docker-compose, this will allow docker-compose to be accessed globally.
 
-<sub> Installing Docker-Compose </sub>
+# Installing Docker-Compose
+
 ```
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
 Set execute permission to docker-compose.
+
 ```sudo chmod +x /usr/local/bin/docker-compose```
 
 To verify successful installation, run:
+
 ```docker-compose --version```
