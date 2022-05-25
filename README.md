@@ -8,4 +8,6 @@ The calculator offers the most common operations such as addition, subtraction, 
 
 # Setting Up
 
+To execute the statements defined in the Dockerfile, install docker-compose. If you already have it installed, go to the next step.
+
 ```sudo apt```
