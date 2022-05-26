@@ -6,38 +6,29 @@ on:
 
 jobs:
  updateAuthor:
-   name: Updating Author
+   name: Auto Merge
    runs-on: ubuntu-latest
    steps:
      - name: checking out code
-       uses: actions/checkout@v2
-
-     - name: Extracting git commit data
-       uses: rlespinasse/git-commit-data-action@v1.x
-
-     - name: Updating author information
-       run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > Mabel
-
-     - name: Action to be use for automatic PR
-       id: pr
-       uses: peter-evans/create-pull-request@v3
+       uses: actions/checkout@v3
        with:
-         branch: "automatic-pr-branch"
-         base: main
-         title: "Automatic PR"
-         body: This is to show automatic PR creation
-         token: ${{ secrets.GITHUB_TOKEN }}
-         delete-branch: true
+          token: ${{ secrets.GH_TOKEN }}
 
-     - name: Approving PR
-       uses: juliangruber/approve-pull-request-action@v1
-       with:
-         github-token: ${{ secrets.GH_TOKEN }}
-         number: ${{ github.event.number }}
+    - name: create pull request
+        id: pr
+        uses: repo-sync/pull-request@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          destination_branch: ${{ github.event.repository.default_branch }}
+          pr_title: "[Automated] Merge ${{ github.ref_name }} into ${{ github.event.repository.default_branch }}"
+          pr_body: "Automated Pull Request"
+          pr_reviewer: "mramirezdev"
+          pr_assignee: "mramirezdev"
 
-     - name: Merging PR
-       uses: juliangruber/approve-pull-request-action@v1
-       with:
-         github-token: ${{ secrets.GH_TOKEN }}
-         number: ${{ github.event.number }}
-         method: squash
+     - name: enable automerge
+        if: steps.pr.outputs.pr_number != ''
+        uses: peter-evans/enable-pull-request-automerge@v2
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          pull-request-number: ${{ steps.pr.outputs.pr_number }}
+          merge-method: merge
