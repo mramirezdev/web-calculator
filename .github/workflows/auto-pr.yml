@@ -1,20 +1,21 @@
-name: Creating automatic PR
+name: Merge Release Into Main
+
 on:
   push:
     branches:
-      - main
+      - develop
 
 jobs:
- main:
-   name: Auto Merge
-   runs-on: ubuntu-latest
-   steps:
-     - name: checking out code
-       uses: actions/checkout@v3
-       with:
+  main:
+    name: Checkout Branch
+    runs-on: ubuntu-latest
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v3
+        with:
           token: ${{ secrets.GH_TOKEN }}
 
-    - name: create pull request
+      - name: create pull request
         id: pr
         uses: repo-sync/pull-request@v2
         with:
@@ -25,7 +26,7 @@ jobs:
           pr_reviewer: "mramirezdev"
           pr_assignee: "mramirezdev"
 
-     - name: enable automerge
+      - name: enable automerge
         if: steps.pr.outputs.pr_number != ''
         uses: peter-evans/enable-pull-request-automerge@v2
         with:
