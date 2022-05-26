@@ -30,6 +30,11 @@ To verify successful installation, run:
 
 # Quick Start
 
+Download the repository by running git.
+```
+sudo git clone https://github.com/mramirezdev/web-calculator
+cd web-calculator
+```
 Make sure you are in the path where the Dockerfile and docker-compose.yml files are located.
 
 Run docker compose to build the image and start the container.
