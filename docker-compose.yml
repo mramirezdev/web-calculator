@@ -2,5 +2,6 @@ version: '3'
 services:
   site:
     build: .
+    image: web-calculator
     ports:
       - "8081:80"
