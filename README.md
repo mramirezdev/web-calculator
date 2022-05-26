@@ -1,4 +1,4 @@
-# Calculadora La Maxima
+# Calculadora Fast2
 
 Web calculator with a simple design to quickly perform basic mathematical operations.
 
