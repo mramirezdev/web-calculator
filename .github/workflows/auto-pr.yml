@@ -1,0 +1,43 @@
+name: Creating automatic PR
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+ updateAuthor:
+   name: Updating Author
+   runs-on: ubuntu-latest
+   steps:
+     - name: checking out code
+       uses: actions/checkout@v2
+
+     - name: Extracting git commit data
+       uses: rlespinasse/git-commit-data-action@v1.x
+
+     - name: Updating author information
+       run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > Mabel Ramirez
+
+     - name: Action to be use for automatic PR
+       id: pr-1
+       uses: peter-evans/create-pull-request@v3
+       with:
+         branch: "automatic-pr-branch"
+         base: main
+         title: "Automatic PR"
+         body: This is to show automatic PR creation
+         token: ${{ secrets.GITHUB_TOKEN }}
+         delete-branch: true
+
+     - name: Approving PR
+       uses: juliangruber/approve-pull-request-action@v1
+       with:
+         github-token: ${{ secrets.GH_TOKEN }}
+         number: ${{ steps.pr-1.outputs.pull-request-number }}
+
+     - name: Merging PR
+       uses: juliangruber/approve-pull-request-action@v1
+       with:
+         github-token: ${{ secrets.GH_TOKEN }}
+         number: ${{ steps.pr-1.outputs.pull-request-number }}
+         method: squash
