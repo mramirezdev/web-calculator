@@ -1,4 +1,4 @@
-name: Merge Release Into Main
+name: Merge Into Main
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   main:
-    name: Checkout Branch
+    name: Auto Merge
     runs-on: ubuntu-latest
     steps:
       - name: git checkout
@@ -15,21 +15,28 @@ jobs:
         with:
           token: ${{ secrets.GH_TOKEN }}
 
-      - name: create pull request
+      - name: Create pull request
         id: pr
         uses: repo-sync/pull-request@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
           destination_branch: ${{ github.event.repository.default_branch }}
           pr_title: "[Automated] Merge ${{ github.ref_name }} into ${{ github.event.repository.default_branch }}"
           pr_body: "Automated Pull Request"
           pr_reviewer: "mramirezdev"
           pr_assignee: "mramirezdev"
 
-      - name: enable automerge
-        if: steps.pr.outputs.pr_number != ''
+      - name: Enable automerge
+        if: steps.pr.outputs.pull-request-operation == 'created'
         uses: peter-evans/enable-pull-request-automerge@v2
         with:
           token: ${{ secrets.GH_TOKEN }}
-          pull-request-number: ${{ steps.pr.outputs.pr_number }}
-          merge-method: merge
+          pull-request-number: ${{ steps.pr.outputs.pull-request-number }}
+          merge-method: squash
+
+      - name: Auto approve
+        if: steps.pr.outputs.pull-request-operation == 'created'
+        uses: juliangruber/approve-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ steps.pr.outputs.pull-request-number }}
