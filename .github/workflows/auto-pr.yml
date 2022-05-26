@@ -5,7 +5,7 @@ on:
       - main
 
 jobs:
- updateAuthor:
+ main:
    name: Auto Merge
    runs-on: ubuntu-latest
    steps:
