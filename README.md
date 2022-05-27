@@ -45,4 +45,4 @@ sudo docker-compose build
 sudo docker compose up
 ```
 
-See the repository on [Docker Hub](https://hub.docker.com/repository/docker/mramirezdev/web-calculator)
+See the repository on [Docker Hub](https://hub.docker.com/repository/docker/mramirezdev/web-calculator).
